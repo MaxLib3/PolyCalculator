@@ -9,19 +9,8 @@ public class IntegerScalar implements Scalar
     }
 
     public String toString() {
-        if (this.number == 0)
-            return "0";
-
         String str = "";
-        int copyNum = this.number;
-        while (copyNum != 0)
-        {
-            str = (copyNum % 10) + str;
-            copyNum /= 10;
-        }
-
-        if (sign() == -1)
-            str = "-" + str;
+        str += this.number;
         return str;
     }
 
@@ -74,7 +63,21 @@ public class IntegerScalar implements Scalar
         return -1;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof IntegerScalar)
+            return this.number == ((IntegerScalar) o).getNumber();
+        else if (o instanceof RationalScalar) {
+            RationalScalar rs = ((RationalScalar)o).reduce();
+            if (rs.getDenominator() == 1)
+                return this.number == rs.getNumerator();
+            return false;
+        }
+        return false;
+    }
+
     public int getNumber() {
         return this.number;
     }
+
 }

@@ -10,20 +10,36 @@ public class RationalScalar implements Scalar
         this.denominator = denominator;
     }
 
+    public String toString() {
+        if (this.numerator == 0)
+            return "0";
+
+        String str = "";
+        int copyNum = Math.abs(this.numerator);
+        int copyDen = Math.abs(this.numerator);
+        RationalScalar rs = new RationalScalar(copyNum, copyDen).reduce();
+        if (rs.getDenominator() == 1)
+            str += rs.getNumerator();
+        else
+            str += rs.getNumerator() + "/" + rs.getDenominator();
+
+        if (sign() == -1)
+            str = "-" + str;
+        return str;
+    }
+
     @Override
     public Scalar add(Scalar s){
-        s.addRational(this);
+        return s.addRational(this);
     }
 
     @Override
     public Scalar addInteger(IntegerScalar s) {
-
         return s.addRational(this);
     }
 
     @Override
     public Scalar addRational(RationalScalar s) {
-
         int numerator1 = ((s.getNumerator() * denominator) + (numerator * s.getDenominator()));
         int denominator1 = (s.getDenominator() * denominator);
         return new RationalScalar(numerator1, denominator1);
@@ -31,7 +47,7 @@ public class RationalScalar implements Scalar
 
     @Override
     public Scalar mul(Scalar s) {
-        return null;
+        return s.mulRational(this);
     }
 
     @Override
@@ -48,28 +64,43 @@ public class RationalScalar implements Scalar
 
     @Override
     public Scalar neg() {
-        return this.mulInteger(new IntegerScalar(-1));
+        return new RationalScalar(-this.numerator, this.denominator);
     }
 
     @Override
     public Scalar power(int exponent) {
-        if (this.sign() < 0)
-            throw new IllegalArgumentException();
-        Scalar s = new RationalScalar(1, 1);
-        for (int i = 0; i < exponent; i++){
-            s = s.mul(this);
-        }
-        return s;
+        return new RationalScalar((int)Math.pow(this.numerator, exponent), (int)Math.pow(this.denominator, exponent));
     }
 
     @Override
     public int sign() {
         if (numerator == 0)
             return 0;
-        else if ( (numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0) )
+        else if ((numerator < 0 && denominator > 0) || (numerator > 0 && denominator < 0))
             return -1;
-        else
-            return 1;
+        return 1;
+    }
+
+    public RationalScalar reduce() {
+        int gcd = gcd(this.numerator, this.denominator);
+        return new RationalScalar(this.numerator / gcd, this.denominator / gcd);
+    }
+
+    private int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof IntegerScalar)
+            return ((IntegerScalar) o).equals(this);
+        else if (o instanceof RationalScalar) {
+            RationalScalar rs1 = ((RationalScalar)o).reduce();
+            RationalScalar rs2 = this.reduce();
+            return rs1.getNumerator() == rs2.getNumerator() && rs1.getDenominator() == rs2.getDenominator();
+        }
+        return false;
     }
 
     public int getNumerator() {
