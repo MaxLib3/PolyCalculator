@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PolyCalculator.iml" filepath="$PROJECT_DIR$/PolyCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PolyCalculator.iml" filepath="$PROJECT_DIR$/.idea/PolyCalculator.iml" />
     </modules>
   </component>
 </project>
