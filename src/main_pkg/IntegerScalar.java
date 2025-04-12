@@ -63,7 +63,6 @@ public class IntegerScalar implements Scalar
         return -1;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (o instanceof IntegerScalar)
             return this.number == ((IntegerScalar) o).getNumber();

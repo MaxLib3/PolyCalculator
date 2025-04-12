@@ -15,4 +15,8 @@ public interface Scalar
     public Scalar power(int exponent);
 
     public int sign();
+
+    public String toString();
+
+    public boolean equals(Object o);
 }

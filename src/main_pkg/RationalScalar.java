@@ -86,12 +86,11 @@ public class RationalScalar implements Scalar
         return new RationalScalar(this.numerator / gcd, this.denominator / gcd);
     }
 
-    private int gcd(int a, int b) {
+    private static int gcd(int a, int b) {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
 
-    @Override
     public boolean equals(Object o) {
         if (o instanceof IntegerScalar)
             return ((IntegerScalar) o).equals(this);
