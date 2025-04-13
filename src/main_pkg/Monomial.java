@@ -41,14 +41,16 @@ public class Monomial
     }
 
     public String toString() {
-        if (new IntegerScalar(1).equals(this.coefficient))
-            return "x^" + this.exponent;
-        else if (new IntegerScalar(-1).equals(this.coefficient))
-            return "-x^" + this.exponent;
-        else if (new IntegerScalar(0).equals(this.coefficient))
+        if (new IntegerScalar(0).equals(this.coefficient))
             return "0";
         else if (this.exponent == 0)
             return this.coefficient.toString();
+        else if (new IntegerScalar(1).equals(this.coefficient) && this.exponent == 1)
+            return "x";
+        else if (new IntegerScalar(1).equals(this.coefficient))
+            return "x^" + this.exponent;
+        else if (new IntegerScalar(-1).equals(this.coefficient))
+            return "-x^" + this.exponent;
         else if (this.exponent == 1)
             return this.coefficient.toString() + "x";
         return this.coefficient.toString() + "x^" + this.exponent;

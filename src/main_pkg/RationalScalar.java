@@ -16,7 +16,7 @@ public class RationalScalar implements Scalar
 
         String str = "";
         int copyNum = Math.abs(this.numerator);
-        int copyDen = Math.abs(this.numerator);
+        int copyDen = Math.abs(this.denominator);
         RationalScalar rs = new RationalScalar(copyNum, copyDen).reduce();
         if (rs.getDenominator() == 1)
             str += rs.getNumerator();
