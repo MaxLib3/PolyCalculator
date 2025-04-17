@@ -4,13 +4,7 @@ import org.junit.*;
 
 public class ScalarTests {
     private Scalar scalar;
-    /* no actual need in before
-    @Before
-    public void initTest()
-    {
-        scalar = new IntegerScalar(0);
-    }
-    */
+
     @Test
     public void test1toString(){
         scalar = new IntegerScalar(1);
