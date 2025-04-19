@@ -4,7 +4,7 @@ import org.junit.*;
 
 public class PolynomialTests {
     private Polynomial p;
-    
+
     @Test
     public void test1build() {
         p = Polynomial.build("3 0 4");
@@ -268,18 +268,4 @@ public class PolynomialTests {
         Polynomial p2 = Polynomial.build("5 -3 2");
         Assert.assertNotEquals("Polynomials should not be equal", p1, p2);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

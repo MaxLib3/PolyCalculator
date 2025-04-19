@@ -401,4 +401,28 @@ public class ScalarTests {
         Object other = "Not a scalar";
         Assert.assertNotEquals("scalar should not be equal to a non-scalar object", scalar, other);
     }
+    @Test
+    public void test1reduce() {
+        RationalScalar scalar1 = new RationalScalar(6,3);
+        scalar1 = scalar1.reduce();
+        Assert.assertEquals("scalars should be 2", "2", scalar1.toString());
+    }
+    @Test
+    public void test2reduce() {
+        RationalScalar scalar1 = new RationalScalar(5,-10);
+        scalar1 = scalar1.reduce();
+        Assert.assertEquals("scalars should be -1/2", "-1/2", scalar1.toString());
+    }
+    @Test
+    public void test3reduce() {
+        RationalScalar scalar1 = new RationalScalar(-100,-10);
+        scalar1 = scalar1.reduce();
+        Assert.assertEquals("scalars should be equal", "10" ,scalar1.toString());
+    }
+    @Test
+    public void test4reduce() {
+        RationalScalar scalar1 = new RationalScalar(7, 3);
+        scalar1 = scalar1.reduce();
+        Assert.assertEquals("scalars should be equal", "7/3" ,scalar1.toString());
+    }
 }
